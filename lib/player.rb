@@ -2,6 +2,8 @@
 
 # Defines the players themselves
 class Player
+  attr_reader :name, :symbol
+
   def initialize(name, symbol)
     @name = name
     @symbol = symbol
