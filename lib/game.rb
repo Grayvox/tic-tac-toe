@@ -2,6 +2,15 @@ require_relative 'board'
 
 # For the game that houses the board
 class Game < Board
+  def start_message
+    puts "
+    ===================
+    \s\s\sTIC\s\sTAC\s\sTOE\s\s\s
+    \s\s\s\sBY\s\sGRAYVOX\s\s\s\s
+    ===================
+    "
+  end
+
   def next_turn(name, symbol)
     display_board
     puts "Alright, #{name}, it's your turn! Pick a spot on the board."
@@ -33,11 +42,11 @@ class Game < Board
       possibilities[parent_i].each do |element|
         test[element] == symbol ? spots_won += 1 : nil
       end
-      puts 'Game won!' if spots_won == 3
+      return true if spots_won == 3
     end
   end
   # rubocop:enable Metrics/MethodLength
 end
 
 game = Game.new
-game.win_check('X')
+game.start_message
