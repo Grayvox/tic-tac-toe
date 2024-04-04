@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Defines the players themselves
 class Player
   attr_reader :name, :symbol
