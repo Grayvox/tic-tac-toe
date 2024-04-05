@@ -1,7 +1,32 @@
 require_relative 'board'
 
+require 'pry'
+require 'pry-byebug'
+
 # For the game that houses the board
 class Game < Board
+  private
+
+  attr_accessor :turns_completed
+
+  public
+
+  def play_game(player_one, player_two)
+    turns_completed = 0
+    start_message
+    until turns_completed == 8
+      next_turn(player_one.name, player_one.symbol)
+      return stop_game(player_one) if win_check(player_one.symbol) == true
+
+      next_turn(player_two.name, player_two.symbol)
+      return stop_game(player_two) if win_check(player_two.symbol) == true
+
+      turns_completed += 1
+    end
+  end
+
+  private
+
   def start_message
     puts "
     ===================
@@ -35,18 +60,17 @@ class Game < Board
       [0, 4, 8],
       [2, 4, 6]
     ]
-    test = ['X', 'X', 'X', 4, 5, 6, 7, 8, 9]
     spots_won = 0
     possibilities.each_with_index do |_, parent_i|
-      spots_won = 0
       possibilities[parent_i].each do |element|
-        test[element] == symbol ? spots_won += 1 : nil
+        @spots[element] == symbol ? spots_won += 1 : spots_won = 0
       end
       return true if spots_won == 3
     end
   end
   # rubocop:enable Metrics/MethodLength
-end
 
-game = Game.new
-game.start_message
+  def stop_game(winner)
+    puts "#{winner.name} is the winner! Congratulations!"
+  end
+end
