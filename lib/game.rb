@@ -8,6 +8,7 @@ class Game < Board
   private
 
   attr_accessor :turns_completed
+  attr_reader :tied
 
   public
 
@@ -23,6 +24,7 @@ class Game < Board
 
       turns_completed += 2
     end
+    stop_game(:tied)
   end
 
   private
@@ -72,6 +74,9 @@ class Game < Board
   # rubocop:enable Metrics/MethodLength
 
   def stop_game(winner)
-    puts "#{winner.name} is the winner! Congratulations!"
+    display_board
+    return puts "#{winner.name} is the winner! Congratulations!" unless winner == :tied
+
+    puts "It's a tie! No winners today."
   end
 end
