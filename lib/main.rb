@@ -10,5 +10,4 @@ puts "Cool! Now, Player 2, you'll be O. Please, enter your name!"
 player_two_name = gets.chomp
 player_two = Player.new(player_two_name, 'O')
 
-game = Game.new
-game.play_game(player_one, player_two)
+Game.new.play_game(player_one, player_two)
