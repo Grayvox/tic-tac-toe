@@ -1,8 +1,5 @@
 require_relative 'board'
 
-require 'pry'
-require 'pry-byebug'
-
 # For the game that houses the board
 class Game < Board
   private
@@ -39,12 +36,12 @@ class Game < Board
   def next_turn(name, symbol)
     display_board
     puts "Alright, #{name}, it's your turn! Pick a spot on the board."
-    begin
-      move = gets.chomp while move.to_i.positive? == false
-    rescue Interrupt
-      puts "\nInterruption detected! Quitting game..."
+    if @spots[move.to_i - 1].is_a? Integer
+      @spots[move.to_i - 1] = symbol
+    else
+      puts "Nice try, #{name}, but a player has already claimed that spot. Try again!"
+      next_turn(name, symbol)
     end
-    @spots[move.to_i - 1] = symbol
     puts 'Turn complete!'
   end
 
@@ -57,7 +54,7 @@ class Game < Board
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [0, 4, 8],
+      [0, 4, 8], # Need to fix
       [2, 4, 6]
     ]
     spots_won = 0
