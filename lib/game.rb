@@ -1,7 +1,6 @@
-require_relative 'board'
+# frozen_string_literal: true
 
-require 'pry'
-require 'pry-byebug'
+require_relative 'board'
 
 # For the game that houses the board
 class Game < Board
