@@ -54,8 +54,6 @@ class Game < Board
     puts 'Turn complete!'
   end
 
-  public
-
   # rubocop:disable Metrics/MethodLength
   def win_check(symbol)
     possibilities = [
