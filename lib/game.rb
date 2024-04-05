@@ -1,5 +1,8 @@
 require_relative 'board'
 
+require 'pry'
+require 'pry-byebug'
+
 # For the game that houses the board
 class Game < Board
   private
@@ -18,7 +21,7 @@ class Game < Board
       next_turn(player_two.name, player_two.symbol)
       return stop_game(player_two) if win_check(player_two.symbol) == true
 
-      turns_completed += 1
+      turns_completed += 2
     end
   end
 
