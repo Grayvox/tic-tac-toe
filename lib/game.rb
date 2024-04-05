@@ -12,19 +12,22 @@ class Game < Board
 
   public
 
+  def initialize
+    super
+    @turns_completed = 0
+  end
+
   def play_game(player_one, player_two)
-    turns_completed = 0
     start_message
-    until turns_completed == 8
+    until @turns_completed == 9
       next_turn(player_one.name, player_one.symbol)
       return stop_game(player_one) if win_check(player_one.symbol) == true
 
+      return stop_game(:tied) if turns_completed == 9
+
       next_turn(player_two.name, player_two.symbol)
       return stop_game(player_two) if win_check(player_two.symbol) == true
-
-      turns_completed += 2
     end
-    stop_game(:tied)
   end
 
   private
@@ -48,6 +51,7 @@ class Game < Board
       puts "Nice try, #{name}, but a player has already claimed that spot. Try again!"
       next_turn(name, symbol)
     end
+    @turns_completed += 1
     puts 'Turn complete!'
   end
 
