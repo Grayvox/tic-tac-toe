@@ -48,7 +48,7 @@ class Game < Board
       @spots[move.to_i - 1] = symbol
     else
       puts "Nice try, #{name}, but a player has already claimed that spot. Try again!"
-      next_turn(name, symbol)
+      return next_turn(name, symbol)
     end
     @turns_completed += 1
     puts 'Turn complete!'
