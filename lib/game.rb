@@ -54,6 +54,8 @@ class Game < Board
     puts 'Turn complete!'
   end
 
+  public
+
   # rubocop:disable Metrics/MethodLength
   def win_check(symbol)
     possibilities = [
@@ -63,13 +65,13 @@ class Game < Board
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [0, 4, 8], # Need to fix
+      [0, 4, 8],
       [2, 4, 6]
     ]
-    spots_won = 0
     possibilities.each_with_index do |_, parent_i|
+      spots_won = 0
       possibilities[parent_i].each do |element|
-        @spots[element] == symbol ? spots_won += 1 : spots_won = 0
+        @spots[element] == symbol ? spots_won += 1 : spots_won
       end
       return true if spots_won == 3
     end
