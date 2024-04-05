@@ -36,6 +36,7 @@ class Game < Board
   def next_turn(name, symbol)
     display_board
     puts "Alright, #{name}, it's your turn! Pick a spot on the board."
+    move = gets.chomp while move.to_i.positive? == false
     if @spots[move.to_i - 1].is_a? Integer
       @spots[move.to_i - 1] = symbol
     else
