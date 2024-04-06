@@ -2,8 +2,6 @@
 
 # For the physical board itself
 class Board
-  protected
-
   attr_reader :spots, :board
 
   def initialize
