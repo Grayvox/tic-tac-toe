@@ -6,7 +6,7 @@ require_relative 'board'
 class Game < Board
   private
 
-  attr_accessor :turns_completed
+  attr_writer :turns_completed
   attr_reader :tied
 
   public
