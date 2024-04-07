@@ -1,4 +1,3 @@
-# To be filled
 require 'spec_helper'
 require './lib/player'
 

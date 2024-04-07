@@ -11,6 +11,8 @@ class Game < Board
 
   public
 
+  attr_reader :turns_completed
+
   def initialize
     super
     @turns_completed = 0
